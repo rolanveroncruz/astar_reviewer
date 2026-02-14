@@ -52,7 +52,7 @@ export class LoginPageComponent {
 
     try {
       await this.auth.loginWithGoogle();
-      await this.router.navigateByUrl('/');
+      //await this.router.navigateByUrl('/');
     } catch (e: any) {
       this.errorMsg.set(this.prettyFirebaseError(e));
     } finally {

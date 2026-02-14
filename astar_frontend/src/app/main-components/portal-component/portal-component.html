@@ -1,0 +1,126 @@
+<div class="portal-container">
+
+  <header class="portal-header">
+    <h1>Welcome back, {{ userName }}</h1>
+    <p class="subtitle">Here is what’s happening with your learning journey today.</p>
+  </header>
+
+  <mat-tab-group animationDuration="500ms" mat-stretch-tabs="false" mat-align-tabs="start">
+
+    <mat-tab label="Dashboard">
+      <div class="tab-content dashboard-grid">
+
+        <div class="stats-row">
+          <mat-card class="stat-card">
+            <mat-card-header>
+              <mat-card-title>{{ stats.testsCompleted }}</mat-card-title>
+              <mat-card-subtitle>Tests Taken</mat-card-subtitle>
+            </mat-card-header>
+            <mat-icon class="stat-icon color-blue">assignment_turned_in</mat-icon>
+          </mat-card>
+
+          <mat-card class="stat-card">
+            <mat-card-header>
+              <mat-card-title>{{ stats.avgScore }}%</mat-card-title>
+              <mat-card-subtitle>Average Score</mat-card-subtitle>
+            </mat-card-header>
+            <mat-icon class="stat-icon color-green">analytics</mat-icon>
+          </mat-card>
+
+          <mat-card class="stat-card">
+            <mat-card-header>
+              <mat-card-title>{{ stats.studyHours }}h</mat-card-title>
+              <mat-card-subtitle>Study Time</mat-card-subtitle>
+            </mat-card-header>
+            <mat-icon class="stat-icon color-purple">timer</mat-icon>
+          </mat-card>
+        </div>
+
+        <mat-card class="sessions-card">
+          <mat-card-header>
+            <mat-card-title>Upcoming Sessions</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <table mat-table [dataSource]="upcomingSessions" class="full-width-table">
+
+              <ng-container matColumnDef="subject">
+                <th mat-header-cell *matHeaderCellDef> Subject </th>
+                <td mat-cell *matCellDef="let session"> <strong>{{ session.subject }}</strong> </td>
+              </ng-container>
+
+              <ng-container matColumnDef="tutor">
+                <th mat-header-cell *matHeaderCellDef> Tutor </th>
+                <td mat-cell *matCellDef="let session"> {{ session.tutor }} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="date">
+                <th mat-header-cell *matHeaderCellDef> Date </th>
+                <td mat-cell *matCellDef="let session"> {{ session.date }} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="time">
+                <th mat-header-cell *matHeaderCellDef> Time </th>
+                <td mat-cell *matCellDef="let session"> {{ session.time }} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="action">
+                <th mat-header-cell *matHeaderCellDef> </th>
+                <td mat-cell *matCellDef="let session" class="action-cell">
+                  <button mat-stroked-button color="primary" (click)="joinSession(session)">Join</button>
+                </td>
+              </ng-container>
+
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+          </mat-card-content>
+        </mat-card>
+
+      </div>
+    </mat-tab>
+
+    <mat-tab label="Assessments & Testing">
+      <div class="tab-content">
+
+        <div class="filters">
+          <h2>Available Assessments</h2>
+        </div>
+
+        <div class="assessment-grid">
+          <mat-card *ngFor="let test of assessments" class="assessment-card">
+            <div class="card-status-strip" [ngClass]="test.status.toLowerCase().replace(' ', '-')"></div>
+
+            <mat-card-header>
+              <div mat-card-avatar class="assessment-avatar">
+                <mat-icon>quiz</mat-icon>
+              </div>
+              <mat-card-title>{{ test.title }}</mat-card-title>
+              <mat-card-subtitle>{{ test.subject }} • {{ test.duration }}</mat-card-subtitle>
+            </mat-card-header>
+
+            <mat-card-content>
+              <div class="tags">
+                <mat-chip-set>
+                  <mat-chip>{{ test.difficulty }}</mat-chip>
+                  <mat-chip *ngIf="test.status !== 'New'" color="accent" selected>{{ test.status }}</mat-chip>
+                </mat-chip-set>
+              </div>
+              <mat-progress-bar *ngIf="test.status === 'In Progress'" mode="determinate" value="40" class="progress-bar"></mat-progress-bar>
+            </mat-card-content>
+
+            <mat-divider></mat-divider>
+
+            <mat-card-actions align="end">
+              <button mat-button *ngIf="test.status === 'Completed'">REVIEW</button>
+              <button mat-raised-button color="primary" *ngIf="test.status !== 'Completed'" (click)="startAssessment(test)">
+                {{ test.status === 'In Progress' ? 'RESUME' : 'START' }}
+              </button>
+            </mat-card-actions>
+          </mat-card>
+        </div>
+
+      </div>
+    </mat-tab>
+
+  </mat-tab-group>
+</div>

@@ -41,6 +41,7 @@
     </div>
 
     <div class="cards-grid">
+      @for ( service of services;track service){
       <mat-card *ngFor="let service of services" class="service-card">
         <div class="card-icon-header">
           <mat-icon color="primary">{{ service.icon }}</mat-icon>
@@ -56,6 +57,7 @@
           <button mat-button color="primary">LEARN MORE</button>
         </mat-card-actions>
       </mat-card>
+      }
     </div>
   </section>
 

@@ -1,18 +1,25 @@
+
+import { Component,inject } from '@angular/core';
+import {CommonModule} from '@angular/common';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { MatGridListModule } from '@angular/material/grid-list'; // Optional, or use Flexbox in SCSS
-import { Component,inject } from '@angular/core';
+import {MatCard} from '@angular/material/card';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-landing-page',
-  imports: [ MatToolbarModule,
-  MatButtonModule,
-  MatIconModule,
-  MatCardModule,
-  MatGridListModule,
+  standalone:true,
+  imports: [
+    CommonModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatCardModule,
+    MatButtonModule,
+    MatCard,
+    MatGridListModule,
   ],
   templateUrl: './landing-page.html',
   styleUrls: ['./landing-page.scss']

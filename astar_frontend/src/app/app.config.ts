@@ -1,5 +1,5 @@
 import { ApplicationConfig, provideBrowserGlobalErrorListeners, provideZonelessChangeDetection } from '@angular/core';
-import { provideRouter } from '@angular/router';
+import { provideRouter,withDebugTracing } from '@angular/router';
 import {provideFirebaseApp, initializeApp} from '@angular/fire/app';
 import { provideAuth, getAuth } from '@angular/fire/auth';
 import {environment} from '../environments/environment';
@@ -12,6 +12,6 @@ export const appConfig: ApplicationConfig = {
     provideAuth(()=>getAuth()),
     provideBrowserGlobalErrorListeners(),
     provideZonelessChangeDetection(),
-    provideRouter(routes)
+    provideRouter(routes, withDebugTracing())
   ]
 };
