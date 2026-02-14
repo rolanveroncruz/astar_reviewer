@@ -1,0 +1,205 @@
+// Variables for quick tweaking
+$hero-height: 600px;
+$padding-std: 2rem;
+$max-width: 1200px;
+
+.astar-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+// 1. Navigation
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+
+  .logo {
+    display: flex;
+    align-items: center;
+    font-weight: 700;
+    font-size: 1.2rem;
+    cursor: pointer;
+
+    .star-icon {
+      margin-right: 8px;
+    }
+  }
+
+  .spacer {
+    flex: 1 1 auto;
+  }
+
+  .nav-links {
+    display: none; // Hidden on mobile by default
+    margin-right: 1rem;
+
+    @media (min-width: 768px) {
+      display: block;
+    }
+  }
+}
+
+// 2. Hero Section
+.hero-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: $hero-height;
+  background: linear-gradient(135deg, #3f51b5 0%, #5c6bc0 100%); // Use theme primary colors if available
+  color: white;
+  text-align: center;
+  padding: $padding-std;
+  position: relative;
+  overflow: hidden;
+
+  .hero-content {
+    z-index: 2;
+    max-width: 800px;
+
+    h1 {
+      font-size: 3rem;
+      font-weight: 900;
+      margin-bottom: 1rem;
+      line-height: 1.2;
+
+      @media (max-width: 600px) {
+        font-size: 2rem;
+      }
+    }
+
+    .hero-subtitle {
+      font-size: 1.25rem;
+      margin-bottom: 2rem;
+      opacity: 0.9;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+
+      .cta-button {
+        padding: 0 2rem;
+        font-size: 1.1rem;
+        height: 48px;
+      }
+
+      .secondary-cta {
+        color: white;
+        border-color: white;
+      }
+    }
+  }
+}
+
+// 3. Services Section
+.services-section {
+  padding: 4rem $padding-std;
+  background-color: #f9f9f9;
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 3rem;
+
+    h2 {
+      font-size: 2rem;
+      color: #333;
+      margin-bottom: 0.5rem;
+    }
+    p {
+      color: #666;
+    }
+  }
+
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: $max-width;
+    margin: 0 auto;
+  }
+
+  .service-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+    }
+
+    .card-icon-header {
+      padding: 16px 16px 0;
+      mat-icon {
+        transform: scale(1.5);
+        margin-left: 4px; // Slight adjustment for scale
+      }
+    }
+  }
+}
+
+// 4. Stats Section
+.stats-section {
+  background-color: #333;
+  color: white;
+  padding: 3rem $padding-std;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 2rem;
+  text-align: center;
+
+  .stat-item {
+    h3 {
+      font-size: 2.5rem;
+      color: #ff4081; // Accent color
+      margin: 0;
+    }
+    p {
+      margin: 0;
+      font-size: 1.1rem;
+      opacity: 0.8;
+    }
+  }
+}
+
+// 5. Footer
+.footer {
+  background-color: #222;
+  color: #ccc;
+  padding: 2rem $padding-std;
+  margin-top: auto;
+
+  .footer-content {
+    max-width: $max-width;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+
+    @media (max-width: 600px) {
+      flex-direction: column;
+      text-align: center;
+      gap: 1rem;
+    }
+  }
+
+  .footer-links {
+    a {
+      color: #ccc;
+      text-decoration: none;
+      margin-left: 1.5rem;
+      font-size: 0.9rem;
+
+      &:hover {
+        color: white;
+        @media (max-width: 600px) {
+          margin: 0 0.75rem;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,90 @@
+<div class="astar-container">
+
+  <mat-toolbar color="primary" class="navbar">
+    <span class="logo">
+      <mat-icon class="star-icon">star</mat-icon> AStar
+    </span>
+
+    <span class="spacer"></span>
+
+    <nav class="nav-links">
+      <a mat-button href="#services">Services</a>
+      <a mat-button href="#about">About Us</a>
+      <a mat-button href="#reviews">Success Stories</a>
+    </nav>
+
+    <button mat-raised-button color="accent" (click)="onLogin()">
+      <mat-icon>login</mat-icon> Login
+    </button>
+  </mat-toolbar>
+
+  <header class="hero-section">
+    <div class="hero-content">
+      <h1>Reach Your Full Potential</h1>
+      <p class="hero-subtitle">Premium tutoring and standardized test preparation designed to help you shine.</p>
+      <div class="hero-actions">
+        <button mat-raised-button color="accent" class="cta-button" (click)="onGetStarted()">
+          Get Started
+        </button>
+        <button mat-stroked-button class="secondary-cta">
+          View Courses
+        </button>
+      </div>
+    </div>
+    <div class="hero-visual"></div>
+  </header>
+
+  <section id="services" class="services-section">
+    <div class="section-header">
+      <h2>Our Expertise</h2>
+      <p>Comprehensive learning solutions tailored to your goals.</p>
+    </div>
+
+    <div class="cards-grid">
+      <mat-card *ngFor="let service of services" class="service-card">
+        <div class="card-icon-header">
+          <mat-icon color="primary">{{ service.icon }}</mat-icon>
+        </div>
+        <mat-card-header>
+          <mat-card-title>{{ service.title }}</mat-card-title>
+          <mat-card-subtitle>{{ service.subtitle }}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <p>{{ service.description }}</p>
+        </mat-card-content>
+        <mat-card-actions align="end">
+          <button mat-button color="primary">LEARN MORE</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </section>
+
+  <section class="stats-section">
+    <div class="stat-item">
+      <h3>98%</h3>
+      <p>College Acceptance</p>
+    </div>
+    <div class="stat-item">
+      <h3>500+</h3>
+      <p>Students Tutored</p>
+    </div>
+    <div class="stat-item">
+      <h3>150+</h3>
+      <p>Points Avg. SAT Increase</p>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <h4>AStar Services</h4>
+        <p>&copy; 2024 AStar Education. All rights reserved.</p>
+      </div>
+      <div class="footer-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Contact Support</a>
+      </div>
+    </div>
+  </footer>
+</div>
