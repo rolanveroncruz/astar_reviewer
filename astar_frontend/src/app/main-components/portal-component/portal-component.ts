@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 // Angular Material Imports
@@ -10,6 +10,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatDividerModule } from '@angular/material/divider';
+import {AuthService} from '../../../api_services/auth-service';
 
 // Interfaces for type safety
 interface Assessment {
@@ -46,6 +47,7 @@ interface UpcomingSession {
   styleUrls: ['./portal-component.scss']
 })
 export class PortalComponent {
+    loginService = inject(AuthService);
 
   // Dashboard Data
   userName = 'Alex';
@@ -70,7 +72,12 @@ export class PortalComponent {
     { id: 4, title: 'Chemistry Basics', subject: 'Science', duration: '30 mins', status: 'New', difficulty: 'Medium' }
   ];
 
-  constructor() {}
+  constructor() {
+      this.loginService.user$.subscribe((user)=>{
+          this.userName = user?.displayName ?? '';
+          console.log( "user is:" + this.userName );
+      });
+  }
 
   startAssessment(test: Assessment) {
     console.log(`Starting assessment: ${test.title}`);
